@@ -26,4 +26,4 @@ brew "go"
 
 tap "caskroom/versions"
 
-cask "cask-versions/java8"
+cask "java8"
