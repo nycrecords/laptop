@@ -230,9 +230,9 @@ EOF
 fi
 
 if ! brew_is_installed "pyenv-virtualenvwrapper"; then
-  if ! ~/.pyenv/shims/pip3 list | ag "virtualenvwrapper" > /dev/null; then
+  if ! pip3 list | ag "virtualenvwrapper" > /dev/null; then
     fancy_echo 'Installing virtualenvwrapper...'
-    ~/.pyenv/shims/pip3 install virtualenvwrapper
+    pip3 install virtualenvwrapper
     append_to_file "$shell_file" 'export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3'
     append_to_file "$shell_file" 'export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv'
     append_to_file "$shell_file" 'source /usr/local/bin/virtualenvwrapper.sh'
@@ -241,7 +241,6 @@ fi
 
 fancy_echo "Installing pipsi (https://github.com/mitsuhiko/pipsi)"
 curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
-
 fancy_echo '...Finished Python installation checks.'
 
 
