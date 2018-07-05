@@ -311,8 +311,8 @@ if [ -f "$HOME/.laptop.local" ]; then
   # shellcheck source=/dev/null
   . "$HOME/.laptop.local"
 else
-  # shellcheck source=/dev/null
-  curl --remote-name https://raw.githubusercontent.com/nycrecords/laptop/master/laptop.local
+  curl --remote-name https://raw.githubusercontent.com/nycrecords/laptop/master/.laptop.local
+  . "$HOME/.laptop.local"
 fi
 
 fancy_echo 'All done!'
