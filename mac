@@ -230,9 +230,9 @@ EOF
 fi
 
 if ! brew_is_installed "pyenv-virtualenvwrapper"; then
-  if ! pip3 list | ag "virtualenvwrapper" > /dev/null; then
+  if ! ~/.pyenv/shims/pip3 list | ag "virtualenvwrapper" > /dev/null; then
     fancy_echo 'Installing virtualenvwrapper...'
-    pip3 install virtualenvwrapper
+    ~/.pyenv/shims/pip3 install virtualenvwrapper
     append_to_file "$shell_file" 'export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3'
     append_to_file "$shell_file" 'export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv'
     append_to_file "$shell_file" 'source /usr/local/bin/virtualenvwrapper.sh'
