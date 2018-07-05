@@ -2,12 +2,16 @@
 
 fancy_echo "Running your customizations from ~/.laptop.local ..."
 
-if [ -f "$HOME/Brewfile.local" ]; then
+if [ ! -f "$HOME/Brewfile.local" ]; then
+  curl --remote-name https://raw.githubusercontent.com/nycrecords/laptop/master/Brewfile.local
+else
   if brew bundle --file="$HOME/Brewfile.local"; then
     fancy_echo "All items in Brewfile.local were installed successfully."
   else
     fancy_echo "Some items in Brewfile.local were not installed successfully."
-  fi
+  fi  
 fi
+
+sh "$HOME/install.sh"
 
 append_to_file "$HOME/.zshrc" 'export PATH="$PATH:/usr/local/opt/go/libexec/bin"'

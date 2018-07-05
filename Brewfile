@@ -2,12 +2,14 @@ cask_args appdir: '/Applications'
 
 brew 'git'
 brew 'libgit2'
+brew 'git-lfs'
 
-brew 'the_silver_searcher'
+brew 'gnupg2'
+brew 'gopass'
 
 tap 'homebrew/services'
 
-brew 'postgresql'
+brew 'postgres'
 
 brew 'mysql'
 
@@ -17,11 +19,12 @@ brew 'phantomjs'
 
 brew 'hub'
 
-tap 'cloudfoundry/homebrew-tap'
-brew 'cf-cli'
-
 cask 'cloudapp'
-cask 'flux'
 cask 'github'
 cask 'slack'
 cask 'sublime-text'
+cask 'vscode'
+
+cask 'vagrant'
+
+cask 'gpg-suite'
