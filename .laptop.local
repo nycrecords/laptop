@@ -12,10 +12,10 @@ else
   fi  
 fi
 
-~/.local/bin/pipsi install pipenv
-~/.local/bin/pipsi install black
-~/.local/bin/pipsi install awscli
-~/.local/bin/pipsi install pylint
+pipsi install pipenv
+pipsi install black
+pipsi install awscli
+pipsi install pylint
 
 sh "$HOME/install.sh"
 
