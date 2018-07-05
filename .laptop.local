@@ -12,11 +12,6 @@ else
   fi  
 fi
 
-pipsi install pipenv
-pipsi install black
-pipsi install awscli
-pipsi install pylint
-
 sh "$HOME/install.sh"
 
 append_to_file "$HOME/.zshrc" 'export PATH="$PATH:/usr/local/opt/go/libexec/bin"'
