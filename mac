@@ -135,6 +135,8 @@ function set_proxy() {
     git config --global http.proxy http://bcpxy.nycnet:8080
     export http_proxy=http://bcpxy.nycnet:8080
     export https_proxy=http://bcpxy.nycnet:8080
+  fi
+  
   if [[ -e ~/.ssh/config.proxy ]]; then
     mv ~/.ssh/config ~/.ssh/config.no_proxy
     mv ~/.ssh/config.proxy ~/.ssh/config
