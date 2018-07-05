@@ -1,5 +1,37 @@
 #!/bin/bash
 
+set_proxy() {
+  echo "Adding proxy settings"
+  if command -v cntlm >/dev/null; then
+    git config --global http.proxy http://127.0.0.1:3128
+    export http_proxy=http://127.0.0.1:3128
+    export https_proxy=http://127.0.0.1:3128
+  else
+    git config --global http.proxy http://bcpxy.nycnet:8080
+    export http_proxy=http://bcpxy.nycnet:8080
+    export https_proxy=http://bcpxy.nycnet:8080
+  fi
+
+  if [[ -e ~/.ssh/config.proxy ]]; then
+    mv ~/.ssh/config ~/.ssh/config.no_proxy
+    mv ~/.ssh/config.proxy ~/.ssh/config
+  fi
+ }
+
+unset_proxy() {
+  echo "Removing proxy settings"
+  git config --global --unset-all http.proxy
+  unset http_proxy
+  unset https_proxy
+  if [[ -e ~/.ssh/config.no_proxy ]]; then
+    mv ~/.ssh/config ~/.ssh/config.proxy
+    mv ~/.ssh/config.no_proxy ~/.ssh/config
+  fi
+}
+
+[[ $(networksetup -getcurrentlocation) == 'NYC Records' ]] && set_proxy || unset_proxy
+
+
 SCRIPTPATH=$( cd "$(dirname "$0")" ; pwd -P )
 
 # Add new baseline rules here
