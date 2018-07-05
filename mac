@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Welcome to the 18F laptop script!
+# Welcome to the NYCRecords laptop script!
 # Be prepared to turn your laptop (or desktop)
 # into an awesome development machine.
 
@@ -125,7 +125,7 @@ switch_to_latest_ruby() {
   chruby "ruby-$(latest_installed_ruby)"
 }
 
-append_to_file "$shell_file" "alias laptop='bash <(curl -s https://raw.githubusercontent.com/18F/laptop/master/laptop)'"
+append_to_file "$shell_file" "alias laptop='bash <(curl -s https://raw.githubusercontent.com/nycrecords/laptop/master/laptop)'"
 
 # shellcheck disable=SC2016
 append_to_file "$shell_file" 'export PATH="$HOME/.bin:$PATH"'
@@ -305,7 +305,7 @@ elif [ ! -f "$HOME/.ssh/github_rsa.pub" ]; then
   open ~/Applications/GitHub\ Desktop.app
 fi
 
-curl -s https://raw.githubusercontent.com/18F/laptop/master/seekrets-install | sh -
+curl -s https://raw.githubusercontent.com/nycrecords/laptop/master/seekrets-install | sh -
 
 if [ -f "$HOME/.laptop.local" ]; then
   # shellcheck source=/dev/null
