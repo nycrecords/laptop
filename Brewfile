@@ -23,7 +23,7 @@ cask 'cloudapp'
 cask 'github'
 cask 'slack'
 cask 'sublime-text'
-cask 'vscode'
+cask 'visual-studio-code'
 
 cask 'vagrant'
 
