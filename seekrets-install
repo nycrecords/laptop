@@ -104,7 +104,11 @@ if toolversion git '>=' 2.9.1; then
     BIN_LOCATION="$HOME/bin"
     SUDO_REQUIRED=false
   fi
-  INSTALL_CMD="curl -L -# \"https://github.com${LATEST_RELEASE_URL}\" -o \"${BIN_LOCATION}/git-seekret\" > /dev/null && chmod a+x \"${BIN_LOCATION}/git-seekret\""
+  if [[ $(networksetup -getcurrentlocation) == 'NYC Records' ]]; then
+    INSTALL_CMD="curl -x $https_proxy -L -# \"https://github.com${LATEST_RELEASE_URL}\" -o \"${BIN_LOCATION}/git-seekret\" > /dev/null && chmod a+x \"${BIN_LOCATION}/git-seekret\""
+  else
+    INSTALL_CMD="curl -L -# \"https://github.com${LATEST_RELEASE_URL}\" -o \"${BIN_LOCATION}/git-seekret\" > /dev/null && chmod a+x \"${BIN_LOCATION}/git-seekret\""
+  fi
   echo "Installing in $BIN_LOCATION"
   if [  "$SUDO_REQUIRED" = false ]; then
     eval "$INSTALL_CMD"

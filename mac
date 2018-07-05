@@ -125,7 +125,7 @@ switch_to_latest_ruby() {
   chruby "ruby-$(latest_installed_ruby)"
 }
 
-function set_proxy() {
+set_proxy() {
   echo "Adding proxy settings"
   if command -v cntlm >/dev/null; then
     git config --global http.proxy http://127.0.0.1:3128
@@ -136,14 +136,14 @@ function set_proxy() {
     export http_proxy=http://bcpxy.nycnet:8080
     export https_proxy=http://bcpxy.nycnet:8080
   fi
-  
+
   if [[ -e ~/.ssh/config.proxy ]]; then
     mv ~/.ssh/config ~/.ssh/config.no_proxy
     mv ~/.ssh/config.proxy ~/.ssh/config
   fi
  }
 
-function unset_proxy() {
+unset_proxy() {
   echo "Removing proxy settings"
   git config --global --unset-all http.proxy
   unset http_proxy
