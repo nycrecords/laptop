@@ -242,10 +242,10 @@ fi
 fancy_echo "Installing pipsi (https://github.com/mitsuhiko/pipsi)"
 curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
 
-pipsi install pipenv
-pipsi install black
-pipsi install awscli
-pipsi install pylint
+~/.local/bin/pipsi install pipenv
+~/.local/bin/pipsi install black
+~/.local/bin/pipsi install awscli
+~/.local/bin/pipsi install pylint
 
 
 fancy_echo '...Finished Python installation checks.'
