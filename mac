@@ -271,7 +271,8 @@ if ! brew_is_installed "pyenv-virtualenvwrapper"; then
 fi
 
 fancy_echo "Installing pipsi (https://github.com/mitsuhiko/pipsi)"
-curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
+curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python3 - --src=git+https://github.com/mitsuhiko/pipsi.git\#egg=pipsi
+append_to_file "$shell_file" 'export PATH="$HOME/.local/bin:$PATH"'
 fancy_echo '...Finished Python installation checks.'
 
 
