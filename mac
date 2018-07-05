@@ -218,6 +218,7 @@ EOF
   latest_python_3="$(brew info python3 | egrep -o "3\.\d+\.\d+" | head -1)"
 
   if ! pyenv versions | ag "$latest_python_3" > /dev/null; then
+    echo $latest_python_3
     pyenv install "$latest_python_3"
     pyenv global "$latest_python_3"
     pyenv rehash
