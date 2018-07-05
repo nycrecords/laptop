@@ -4,10 +4,8 @@ cask "firefox"
 cask "github"
 cask "google-chrome"
 cask "iterm2"
-cask "java8"
 cask "jetbrains-toolbox"
 cask "karabiner-elements"
-cask "mas"
 cask "postman"
 cask "spectacle"
 
@@ -25,3 +23,7 @@ brew "tmux"
 brew "vim"
 
 brew "go"
+
+tap "caskroom/versions"
+
+cask "cask-versions/java8"
