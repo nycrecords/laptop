@@ -119,6 +119,10 @@ latest_installed_ruby() {
   find "$HOME/.rubies" -maxdepth 1 -name 'ruby-*' | tail -n1 | egrep -o '\d+\.\d+\.\d+'
 }
 
+python_package_is_installed() {
+  if command -v pipsi > /dev/null; then 
+}
+
 switch_to_latest_ruby() {
   # shellcheck disable=SC1091
   . /usr/local/share/chruby/chruby.sh
@@ -212,25 +216,25 @@ append_to_file "$shell_file" 'eval "$(hub alias -s)"'
 
 fancy_echo 'Checking on Node.js installation...'
 
-# if ! brew_is_installed "node"; then
-#   if command -v n > /dev/null; then
-#     fancy_echo "We recommend using \`nvm\` and not \`n\`."
-#     fancy_echo "See https://pages.18f.gov/frontend/#install-npm"
-#   elif ! command -v nvm > /dev/null; then
-#     fancy_echo 'Installing nvm and lts Node.js and npm...'
-#     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-#     export NVM_DIR="$HOME/.nvm"
-#     # shellcheck source=/dev/null
-#     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#     nvm install node --lts
-#   else
-#     fancy_echo 'version manager detected.  Skipping...'
-#   fi
-# else
-#   brew bundle --file=- <<EOF
-#   brew 'node'
-# EOF
-# fi
+if ! brew_is_installed "node"; then
+  if command -v n > /dev/null; then
+    fancy_echo "We recommend using \`nvm\` and not \`n\`."
+    fancy_echo "See https://pages.18f.gov/frontend/#install-npm"
+  elif ! command -v nvm > /dev/null; then
+    fancy_echo 'Installing nvm and lts Node.js and npm...'
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+    export NVM_DIR="$HOME/.nvm"
+    # shellcheck source=/dev/null
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm install node --lts
+  else
+    fancy_echo 'version manager detected.  Skipping...'
+  fi
+else
+  brew bundle --file=- <<EOF
+  brew 'node'
+EOF
+fi
 
 fancy_echo '...Finished Node.js installation checks.'
 
@@ -275,8 +279,12 @@ if ! brew_is_installed "pyenv-virtualenvwrapper"; then
 fi
 
 fancy_echo "Installing pipsi (https://github.com/mitsuhiko/pipsi)"
-curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python3 - --src=git+https://github.com/mitsuhiko/pipsi.git\#egg=pipsi
-append_to_file "$shell_file" 'export PATH="$HOME/.local/bin:$PATH"'
+if ! command -v pipsi >/dev/null; then
+  curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python3 - --src=git+https://github.com/mitsuhiko/pipsi.git\#egg=pipsi --ignore-existing
+  append_to_file "$shell_file" 'export PATH="$HOME/.local/bin:$PATH"'
+else
+  fancy_echo "Pipsi is already installed."
+fi
 fancy_echo '...Finished Python installation checks.'
 
 
