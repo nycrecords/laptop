@@ -119,10 +119,6 @@ latest_installed_ruby() {
   find "$HOME/.rubies" -maxdepth 1 -name 'ruby-*' | tail -n1 | egrep -o '\d+\.\d+\.\d+'
 }
 
-python_package_is_installed() {
-  if command -v pipsi > /dev/null; then 
-}
-
 switch_to_latest_ruby() {
   # shellcheck disable=SC1091
   . /usr/local/share/chruby/chruby.sh
